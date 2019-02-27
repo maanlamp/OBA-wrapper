@@ -89,14 +89,12 @@ function stringify (responses) {
 		return Object
 			.keys(json)
 			.slice(3, 7)
-			.join(": [object],\n  ")
-			+ "[object],\n  ...";
-	}
-	function fn (json) {
-		return `{\n  ${format(json)}\n}`;
+			.map(item => `"${item}"`)
+			.join(`: "[object]",\n  `)
+			+ `: "[object]",\n\t\/\/...`;
 	}
 	return responses
-		.map(fn)
+		.map(json => `{\n\t${format(json)}\n}`)
 		.join(", ");
 }
 
