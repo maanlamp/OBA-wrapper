@@ -5,9 +5,154 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>API Tester</title>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai-sublime.min.css">
 	<script src="./js/index.js" type="module"></script>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		text-rendering: optimizeLegibility;
+	}
+
+	body {
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+	} body>div {
+		flex: 1 1 50%;
+		display: inline-flex;
+		position: relative;
+	} body>div>pre {
+		position: absolute;
+		left: 0;
+		right: 0;
+		font-size: 1.25rem !important;
+		padding: 1rem !important;
+		tab-size: 2 !important;
+		background: none !important;
+		pointer-events: none;
+		user-select: none;
+		z-index: 999;
+	}
+
+	textarea {
+		border: none;
+		background: rgb(16, 16, 22);
+		outline: none;
+		resize: none;
+		color: white;
+		font-family: monospace;
+		padding: 1rem;
+		font-size: 1.25rem;
+		tab-size: 2;
+		flex: 1 1 100%;
+		color: transparent;
+		caret-color: white;
+	} textarea::selection {
+		color: inherit;
+		background: rgba(140, 199, 255, 0.15);
+	}
+
+	#editor {
+		position: relative;
+	} #editor button {
+		background-color: rgb(27, 151, 74);
+		position: absolute;
+		bottom: 1rem;
+		right: 1rem;
+		border: none;
+		padding: .5em 2em;
+		color: white;
+		border-radius: 999rem;
+		font-size: 1rem;
+		cursor: pointer;
+		outline: none;
+	}
+
+	#response {
+		border-left: 2px solid gray;
+	}
+
+	.hljs-keyword, .hljs-built_in {font-style: italic; color: #78dce8}
+	.hljs-params {font-style: italic; color: #FD971D}
+	.hljs-attr {color: white}
+	.hljs-string {color: #E0CA48}
+	.redkeyword {font-style: normal; color: #f92672}
+	</style>
 </head>
 <body>
-	<input type="text" autofocus/>
+	<div id="editor">
+		<textarea id="code" data-type="javascript" spellcheck="false" autofocus>
+function stringify (responses) {
+	function format (json) {
+		return Object
+			.keys(json)
+			.slice(3, 7)
+			.join(": [object],\n  ")
+			+ "[object],\n  ...";
+	}
+	function fn (json) {
+		return `{\n  ${format(json)}\n}`;
+	}
+	return responses
+		.map(fn)
+		.join(", ");
+}
+
+function addToDocument (txt) {
+	const txtarea = document.querySelector("#response");
+	txtarea.value += txt;
+}
+
+(async () => {
+	localStorage.clear();
+	const res = document.querySelector("#response");
+	(res.querySelector("pre")||{}).innerText = "";
+
+	const api = new API({
+		key: ""
+	});
+	const stream = await api.createStream("search/banaan{5}");
+
+	stream
+		.pipe(stringify)
+		.pipe(addToDocument)
+		.all().then(_ => colorise(res))
+		.catch(console.error);
+})();
+		</textarea>
+		<button>run!</button>
+	</div>
+	<div><textarea id="response" data-type="json" spellcheck="false"></textarea></div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+	<script>
+		function colorise (area) {
+			const pre = document.createElement("pre");
+			const code = document.createElement("code");
+			pre.classList.add(area.dataset.type);
+			pre.append(code);
+			code.innerText = area.value;
+			hljs.highlightBlock(pre);
+			area.parentElement.append(pre);
+			document.querySelectorAll("*").forEach(item => {
+				if (item.innerText.match(/^(async|await|new|return|if|try|catch|for|of|in|else)$/)) item.classList.add("redkeyword");
+			});
+		}
+
+		document.querySelector("#editor>button").addEventListener("click", () => {
+			try {eval(document.querySelector("#code").value)}
+			catch (err) {console.error(err)}
+		});
+
+		document.querySelectorAll("textarea").forEach(area => {
+			area.value = area.value.trim();
+			colorise(area);
+			addEventListener("input", () => {
+				area.parentElement.querySelector("pre").remove();
+				colorise(area);
+			});
+		});
+	</script>
 </body>
 </html>
