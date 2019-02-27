@@ -66,7 +66,6 @@ export function cleanAquabrowserJSON (json) {
 
 	//What have I done...
 	function clean (item) {
-		console.log(item);
 		const [lastname, firstname] = (item.authors||{"main-author":{_text:"defined, un"}})["main-author"]._text.split(", ");
 		let [raw, pages, type, size] = /\[?(\d+)\]? (?:ongenummerde)? ?p(?:agina(?:'|&#x2019;)s)?[^;]*?:? ?([^;]+)? ; (\d+(?:x| ?× ?)?\d* cm)/g.exec((item.description||{"physical-description":{}})["physical-description"]._text) || [null, null, null, null];
 		if (!size) size = /.*(\d+(?:x| × )?\d* cm)/g.exec((item.description||{"physical-description":{}})["physical-description"]._text);
