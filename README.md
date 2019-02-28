@@ -3,7 +3,7 @@ The OBA ([Openbare Bibliotheek Amsterdam](https://oba.nl)) has a public API that
 
 Sadly, the API is a bit clunky, so I set out to make it easy to work with!
 
-_Built and maintained by @maanlamp._
+_Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 ## Glossary
 <details>
@@ -46,7 +46,7 @@ _Built and maintained by @maanlamp._
 > **WOW! 😱<br/>**
 > \- _Maanlamp, 2019_
 
-> **Your feedback here.**<br/>
+> **Your feedback here?**<br/>
 > \- Name
 
 <br/>
@@ -167,3 +167,4 @@ Sends out a fetch request that retries `options.maxTries` (defaults to `5`) time
   - Maybe actually merge all iterators into one object?
 - Separate `api._ping()` into own module
 - If HTTP 429, respect `Retry-After` response header (instead of exponential backoff).
+- Builtin filter
