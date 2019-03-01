@@ -5,6 +5,12 @@ Sadly, the API is a bit clunky, so I set out to make it easy to work with!
 
 _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
+<br/>
+
+---
+
+<br/>
+
 ## Glossary
 <details>
   <summary>Click to expand</summary>
@@ -14,9 +20,9 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 	- [User feedback](#user-feedback)
 	- [Tips for understanding the docs](#tips-for-understanding-the-docs)
 	- [Technologies](#technologies)
-		- [Simple Promise](#simple-promise)
+		- [Simple Promise (Native promises)](#simple-promise-native-promises)
 			- [How to use](#how-to-use)
-		- [Promise streaming](#promise-streaming)
+		- [Promise streaming (Concurrency)](#promise-streaming-concurrency)
 			- [How to use](#how-to-use-1)
 				- [<code>PromiseStream.prepend (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamprepend-any-values---promisestreamcode)
 				- [<code>PromiseStream.append (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamappend-any-values---promisestreamcode)
@@ -25,7 +31,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 				- [<code>PromiseStream.pipeOrdered(*function:* through) -> new PromiseStream</code>](#codepromisestreampipeorderedfunction-through---new-promisestreamcode)
 				- [<code>PromiseStream.all () -> Promise<Promise[]></code>](#codepromisestreamall----promisepromisecode)
 				- [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
-		- [Asynchronous iterator](#asynchronous-iterator)
+		- [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
 			- [How to use](#how-to-use-2)
 				- [<code>for await ... of ...</code>](#codefor-await--of-code)
 		- ["Smart" Requests](#%22smart%22-requests)
@@ -35,6 +41,11 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 </details>
 
 <br/>
+
+---
+
+<br/>
+
 
 ## User feedback
 > **The easiest way to interface with the OBA API!<br/>**
@@ -49,7 +60,13 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 > **Your feedback here?**<br/>
 > \- Name
 
+
 <br/>
+
+---
+
+<br/>
+
 
 ## Tips for understanding the docs
 <details>
@@ -66,20 +83,35 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
   ##### <code>methodName () -> promise\<fulfillmentValue\></code>
 </details>
 
+
 <br/>
+
+---
+
+<br/>
+
 
 ## Technologies
 ⚠️ This wrapper was built for the client side. Server-side querying will be supported in a later version.
 
 Interfacing with the API can be done in several ways. This is to facilitate the coding style of everyone while using the wrapper.
 
-### Simple Promise
+<br/>
+<br/>
+
+### Simple Promise (Native promises)
 To use the API as some sort of `fetch` request, use the method `createPromise`, which will return a Promise that resolves to an array of responses.
 
 #### How to use
 To create a Promise through the wrapper, you simply call its method `createPromise`, which will return a promise that  that resolves to an array of responses. This has no special methods. [Refer to the Promise specification for more information.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-### Promise streaming
+<br/>
+
+---
+
+<br/>
+
+### Promise streaming (Concurrency)
 A _PromiseStream_ is a class that allows the "piping" of promises through functions. It is not like a Node Stream, since those require you to pipe into another stream. For those who understand streams, they are almost the same, just with functions. For those who do not know streams, let me introduce to you the wonderful world of streams! 😍
 
 #### How to use
@@ -120,7 +152,13 @@ Shorthand for calling `Promise.all(stream.promises)`.
 ##### <code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>
 Adds a `.catch()` to every promise to allow for individual error handling. If you just want to handle all errors at once, use `.all().catch()`.
 
-### Asynchronous iterator
+<br/>
+
+---
+
+<br/>
+
+### Asynchronous iterator (Consecutiveness)
 An iterator is a protocol used in JavaScript to iterate over enumerable objects. If that makes no sense to you, I mean things like arrays. You can loop (e.g. _iterate_) over those.
 
 However, arrays have synchronous iterators. That means they do not `await` the values inside, so you cannot use them for promises.
@@ -137,13 +175,19 @@ Because the iterator is asynchronous, you can use it within a `for await of` loo
 //renderToDocument exist, and do what their
 //name says.
 const iterator = await api.createIterator();
-for await (const responses of iterator) {
-  const json = toJSON(responses);
+for await (const response of iterator) {
+  const json = toJSON(response);
 	const cleanedJSON = cleanJSON(json);
 	renderToDocument(cleanedJSON);
 }
 ```
 This will do the same as [this PromiseStream example](#codepipefunction-throughcode).
+
+<br/>
+
+---
+
+<br/>
 
 ### "Smart" Requests
 A smart request is a request that retries 4 times ([implementing exponential backoff](https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff)), but only if the reason of failure is not a fatal one (i.e. "*userRateLimitExceeded*", etc...).
@@ -158,6 +202,9 @@ You should not have to use a SmartRequest directly, since this wrapper uses them
 ##### <code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>
 Sends out a fetch request that retries `options.maxTries` (defaults to `5`) times if possible. If a fatal error occored, or the maximum amount of tries was exceeded, the promise rejects with an error. If all went well, it will cache the result from url in localStorage with the key of `url`, and resolve with a response.
 
+<br/>
+
+---
 
 <br/>
 
