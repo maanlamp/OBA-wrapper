@@ -86,7 +86,8 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
   ##### <code>methodName () -> promise\<fulfillmentValue\></code>
 </details>
 
-
+<br/>
+<br/>
 <br/>
 
 ---
