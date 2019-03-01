@@ -75,7 +75,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 | Symbol | Description |
 |-|-|
-| 🏃 | Will be in next release  |
+| 🏃 | Will be in next release |
 | 💪 | Expected in next release |
 | ⚫️ | Under discussion |
 
@@ -84,6 +84,8 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 - [ ] ⚫️ Separate `api._ping()` into own module
 - [ ] 💪 If HTTP 429, respect `Retry-After` response header (instead of exponential backoff).
 - [ ] ⚫️ Builtin filter
+- [ ] 🏃 Allow offset requests (either set start page or define offset as items/pagesize)
+- [ ] ⚫️ "Revivable" smart requests.
 
 <br/>
 <br/>
