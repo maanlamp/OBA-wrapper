@@ -205,7 +205,7 @@ But don't fret! I've made a custom asynchronous iterator for you! Simply call th
 
 #### How to use
 
-##### <code>for <span class="pl-k">await</span> ... of ...</code>
+##### <code>for await ... of ...</code>
 Because the iterator is asynchronous, you can use it within a `for await of` loop. If you have no idea what that means, take a look:
 
 ```js
