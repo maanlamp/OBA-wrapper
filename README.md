@@ -7,9 +7,6 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 <br/>
 <br/>
-
----
-
 <br/>
 
 ## Glossary
@@ -19,6 +16,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 - [OBA-wrapper](#oba-wrapper)
 	- [Glossary](#glossary)
 	- [User feedback](#user-feedback)
+	- [Iteration plan / planned features](#iteration-plan--planned-features)
 	- [Tips for understanding the docs](#tips-for-understanding-the-docs)
 	- [Technologies](#technologies)
 		- [Simple Promise (Native promises)](#simple-promise-native-promises)
@@ -38,16 +36,12 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 		- ["Smart" Requests](#%22smart%22-requests)
 			- [How to use](#how-to-use-3)
 				- [<code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>](#codesmartrequesturl-url-object-options---promiseresponsecode)
-	- [Iteration plan / planned features](#iteration-plan--planned-features)
 	- [License](#license)
 </details>
 
 <br/>
 <br/>
 <br/>
-
----
-
 <br/>
 
 ## User feedback
@@ -65,9 +59,25 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 
 <br/>
+<br/>
+<br/>
+<br/>
 
----
+## Iteration plan / planned features
 
+| Symbol | Description |
+|-|-|
+| 🏃 | Will be in next release  |
+| 💪 | Expected in next release |
+| ⚫️ | Under discussion |
+
+- [ ] 🏃 Make server-side usage possible.
+- [ ] ⚫️ Make a `[Symbol().asyncIterator]` for stream
+- [ ] ⚫️ Separate `api._ping()` into own module
+- [ ] 💪 If HTTP 429, respect `Retry-After` response header (instead of exponential backoff).
+- [ ] ⚫️ Builtin filter
+
+<br/>
 <br/>
 <br/>
 
@@ -87,11 +97,6 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 </details>
 
 <br/>
-<br/>
-<br/>
-
----
-
 <br/>
 <br/>
 
@@ -216,24 +221,6 @@ You should not have to use a SmartRequest directly, since this wrapper uses them
 Sends out a fetch request that retries `options.maxTries` (defaults to `5`) times if possible. If a fatal error occored, or the maximum amount of tries was exceeded, the promise rejects with an error. If all went well, it will cache the result from url in localStorage with the key of `url`, and resolve with a response.
 
 <br/>
-
----
-
-<br/>
-<br/>
-
-## Iteration plan / planned features
-- Make server-side usage possible.
-- Make a [Symbol().asyncIterator] for stream
-  - Maybe actually merge all iterators into one object?
-- Separate `api._ping()` into own module
-- If HTTP 429, respect `Retry-After` response header (instead of exponential backoff).
-- Builtin filter
-
-<br/>
-
----
-
 <br/>
 <br/>
 
