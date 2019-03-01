@@ -6,7 +6,9 @@ Sadly, the API is a bit clunky, so I set out to make it easy to work with!
 _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 <br/>
-<br/>
+
+---
+
 <br/>
 
 ## Glossary
@@ -42,6 +44,9 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 <br/>
 <br/>
 <br/>
+
+---
+
 <br/>
 
 ## User feedback
@@ -61,6 +66,9 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 <br/>
 <br/>
 <br/>
+
+---
+
 <br/>
 
 ## Iteration plan / planned features
@@ -79,6 +87,9 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 <br/>
 <br/>
+
+---
+
 <br/>
 
 ## Tips for understanding the docs
@@ -98,6 +109,10 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 <br/>
 <br/>
+<br/>
+
+---
+
 <br/>
 
 ## Technologies
@@ -222,6 +237,9 @@ Sends out a fetch request that retries `options.maxTries` (defaults to `5`) time
 
 <br/>
 <br/>
+
+---
+
 <br/>
 
 ## License
