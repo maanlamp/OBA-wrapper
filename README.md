@@ -6,6 +6,7 @@ Sadly, the API is a bit clunky, so I set out to make it easy to work with!
 _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
 <br/>
+<br/>
 
 ---
 
@@ -41,11 +42,12 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 </details>
 
 <br/>
+<br/>
+<br/>
 
 ---
 
 <br/>
-
 
 ## User feedback
 > **The easiest way to interface with the OBA API!<br/>**
@@ -66,7 +68,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 ---
 
 <br/>
-
+<br/>
 
 ## Tips for understanding the docs
 <details>
@@ -89,7 +91,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 ---
 
 <br/>
-
+<br/>
 
 ## Technologies
 ⚠️ This wrapper was built for the client side. Server-side querying will be supported in a later version.
@@ -109,6 +111,7 @@ To create a Promise through the wrapper, you simply call its method `createPromi
 
 ---
 
+<br/>
 <br/>
 
 ### Promise streaming (Concurrency)
@@ -157,6 +160,7 @@ Adds a `.catch()` to every promise to allow for individual error handling. If yo
 ---
 
 <br/>
+<br/>
 
 ### Asynchronous iterator (Consecutiveness)
 An iterator is a protocol used in JavaScript to iterate over enumerable objects. If that makes no sense to you, I mean things like arrays. You can loop (e.g. _iterate_) over those.
@@ -188,6 +192,7 @@ This will do the same as [this PromiseStream example](#codepipefunction-throughc
 ---
 
 <br/>
+<br/>
 
 ### "Smart" Requests
 A smart request is a request that retries 4 times ([implementing exponential backoff](https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff)), but only if the reason of failure is not a fatal one (i.e. "*userRateLimitExceeded*", etc...).
@@ -206,6 +211,7 @@ Sends out a fetch request that retries `options.maxTries` (defaults to `5`) time
 
 ---
 
+<br/>
 <br/>
 
 ## Iteration plan / planned features
