@@ -39,6 +39,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 			- [How to use](#how-to-use-3)
 				- [<code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>](#codesmartrequesturl-url-object-options---promiseresponsecode)
 	- [Iteration plan / planned features](#iteration-plan--planned-features)
+	- [License](#license)
 </details>
 
 <br/>
@@ -107,6 +108,24 @@ To use the API as some sort of `fetch` request, use the method `createPromise`, 
 #### How to use
 To create a Promise through the wrapper, you simply call its method `createPromise`, which will return a promise that  that resolves to an array of responses. This has no special methods. [Refer to the Promise specification for more information.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
+An example:
+```js
+//Imagine the functions toJson, cleanJSON and
+//renderToDocument exist, and do what their
+//name says.
+const requests = await api.createPromise("endpoint/query");
+requests
+  .then(responses => {
+    const mapped = responses.map(toJSON);
+    return Promise.all(mapped);
+  }).then(jsons => {
+    const cleaned = responses.map(cleanJSON);
+    return Promise.all(cleaned);
+  }).then(cleanJsons => {
+    cleanJsons.forEach(renderToDocument);
+  });
+```
+
 <br/>
 <br/>
 
@@ -135,7 +154,7 @@ An example:
 //Imagine the functions toJson, cleanJSON and
 //renderToDocument exist, and do what their
 //name says.
-const stream = await api.createStream();
+const stream = await api.createStream("endpoint/query");
 stream
   .pipe(toJSON)
   .pipe(cleanJSON)
@@ -170,7 +189,7 @@ Because the iterator is asynchronous, you can use it within a `for await of` loo
 //Imagine the functions toJson, cleanJSON and
 //renderToDocument exist, and do what their
 //name says.
-const iterator = await api.createIterator();
+const iterator = await api.createIterator("endpoint/query");
 for await (const response of iterator) {
   const json = toJSON(response);
 	const cleanedJSON = cleanJSON(json);
@@ -209,3 +228,13 @@ Sends out a fetch request that retries `options.maxTries` (defaults to `5`) time
 - Separate `api._ping()` into own module
 - If HTTP 429, respect `Retry-After` response header (instead of exponential backoff).
 - Builtin filter
+
+<br/>
+
+---
+
+<br/>
+<br/>
+
+## License
+Licensed under MIT - Copyright © 2019 [maanlamp](https://github.com/maanlamp)
