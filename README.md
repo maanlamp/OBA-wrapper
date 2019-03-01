@@ -108,10 +108,6 @@ To use the API as some sort of `fetch` request, use the method `createPromise`, 
 To create a Promise through the wrapper, you simply call its method `createPromise`, which will return a promise that  that resolves to an array of responses. This has no special methods. [Refer to the Promise specification for more information.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 <br/>
-
----
-
-<br/>
 <br/>
 
 ### Promise streaming (Concurrency)
@@ -156,10 +152,6 @@ Shorthand for calling `Promise.all(stream.promises)`.
 Adds a `.catch()` to every promise to allow for individual error handling. If you just want to handle all errors at once, use `.all().catch()`.
 
 <br/>
-
----
-
-<br/>
 <br/>
 
 ### Asynchronous iterator (Consecutiveness)
@@ -186,10 +178,6 @@ for await (const response of iterator) {
 }
 ```
 This will do the same as [this PromiseStream example](#codepipefunction-throughcode).
-
-<br/>
-
----
 
 <br/>
 <br/>
