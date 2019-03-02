@@ -1,4 +1,4 @@
-![The OBA-wrapper logo](./assets/images/logo.png)
+![The OBA-wrapper logo](assets/images/logo.png)
 
 # OBA-wrapper
 The OBA ([Openbare Bibliotheek Amsterdam](https://oba.nl)) has a public API that is usable by *everyone* to create very cool stuff; [here is a list of such cool stuff](https://www.oba.nl/actueel/obahva/techtrack.html).
