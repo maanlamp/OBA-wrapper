@@ -1,3 +1,5 @@
+![The OBA-wrapper logo](assets/images/logo.png)
+
 # OBA-wrapper
 The OBA ([Openbare Bibliotheek Amsterdam](https://oba.nl)) has a public API that is usable by *everyone* to create very cool stuff; [here is a list of such cool stuff](https://www.oba.nl/actueel/obahva/techtrack.html).
 
@@ -18,6 +20,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 - [OBA-wrapper](#oba-wrapper)
 	- [Glossary](#glossary)
 	- [User feedback](#user-feedback)
+	- [Getting started](#getting-started)
 	- [Iteration plan / planned features](#iteration-plan--planned-features)
 	- [Tips for understanding the docs](#tips-for-understanding-the-docs)
 	- [Technologies](#technologies)
@@ -30,7 +33,7 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 				- [<code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>](#codepromisestreaminsert-number-index-any-values---promisestreamcode)
 				- [<code>PromiseStream.pipe (*function:* through) -> new PromiseStream</code>](#codepromisestreampipe-function-through---new-promisestreamcode)
 				- [<code>PromiseStream.pipeOrdered(*function:* through) -> new PromiseStream</code>](#codepromisestreampipeorderedfunction-through---new-promisestreamcode)
-				- [<code>PromiseStream.all () -> Promise<Promise[]></code>](#codepromisestreamall----promisepromisecode)
+				- [<code>PromiseStream.all () -> Promise<Any[]></code>](#codepromisestreamall----promiseanycode)
 				- [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
 		- [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
 			- [How to use](#how-to-use-2)
@@ -70,6 +73,41 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 ---
 
 <br/>
+
+## Getting started
+the recommended way to use this wrapper is through some sort of package manager, such as *NPM*:
+
+```shell
+npm i github:maanlamp/OBA-wrapper
+```
+
+This way, you are sure to get the latest version, and you can easily update using the package manager aswell.
+
+Since the wrapper is only client side (currently), you can just download the the entire `js` folder, and import `index.js` into your html as follows:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ... -->
+  <script src="./js/index.js" type="module"></script>
+  <!-- ... -->
+</head>
+<!-- ... -->
+```
+
+- Note that it is not needed to import it at the bottom of a `<body>` tag, since a module will always be loaded after the document.
+
+- `type="module"` is *VERY* important.
+
+- Also note that if you use a package manager, the url will probably be different. For example: for npm the url would be `node_modules/OBA-wrapper/js/index.js`.
+
+<br/>
+<br/>
+
+---
+
+<br/>
+
 
 ## Iteration plan / planned features
 
@@ -187,7 +225,7 @@ stream
 ##### <code>PromiseStream.pipeOrdered(*function:* through) -> new PromiseStream</code>
 Runs a function `through` for every resolved promise in the stream, waiting for each previous resolvement. Accepts both synchronous and asynchronous functions. Returns a new stream filled with promises that resolve to the value of `through`, so you can chain them (and use previous values).
 
-##### <code>PromiseStream.all () -> Promise<Promise[]></code>
+##### <code>PromiseStream.all () -> Promise<Any[]></code>
 Shorthand for calling `Promise.all(stream.promises)`.
 
 ##### <code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>
