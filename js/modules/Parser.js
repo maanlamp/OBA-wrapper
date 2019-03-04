@@ -107,5 +107,5 @@ export function cleanAquabrowserJSON (json) {
 	// }
 
 	// return root.map(clean);
-	return item;
+	return root;
 }
