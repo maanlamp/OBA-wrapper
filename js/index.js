@@ -52,7 +52,7 @@ export class API {
 
 		return {
 			endpoint,
-			query: `&${query}=${value.trim()}`,
+			query: encodeURI(`&${query}=${value.trim()}`),
 			max: Number(max),
 			pagesize: Math.min(
 				Number(max),
