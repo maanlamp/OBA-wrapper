@@ -105,7 +105,6 @@ function addToDocument (txt) {
 (async () => {
 	localStorage.clear();
 	const res = document.querySelector("#response");
-	(res.querySelector("pre")||{}).innerText = "";
 
 	const api = new API({
 		key: ""

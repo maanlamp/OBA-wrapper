@@ -31,8 +31,8 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
         - [<code>PromiseStream.prepend (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamprepend-any-values---promisestreamcode)
         - [<code>PromiseStream.append (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamappend-any-values---promisestreamcode)
         - [<code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>](#codepromisestreaminsert-number-index-any-values---promisestreamcode)
-        - [<code>PromiseStream.pipe (*function:* through) -> new PromiseStream</code>](#codepromisestreampipe-function-through---new-promisestreamcode)
-        - [<code>PromiseStream.pipeOrdered(*function:* through) -> new PromiseStream</code>](#codepromisestreampipeorderedfunction-through---new-promisestreamcode)
+        - [<code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>](#codepromisestreampipe-function-through---promisestreamcode)
+        - [<code>PromiseStream.pipeOrdered(*function:* through) -> PromiseStream</code>](#codepromisestreampipeorderedfunction-through---promisestreamcode)
         - [<code>PromiseStream.all () -> Promise<Any[]></code>](#codepromisestreamall----promiseanycode)
         - [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
     - [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
@@ -205,7 +205,7 @@ Inserts values at the end of the stream. `values` do not have to be promises, th
 ##### <code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>
 Inserts values into the stream at `index`. `values` do not have to be promises, the stream will internally convert all values to promises. If `index` is not provided, it will be treated as `values`.
 
-##### <code>PromiseStream.pipe (*function:* through) -> new PromiseStream</code>
+##### <code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>
 ⚠️ _Does not pipe in order!_
 
 Runs a function `through` for every resolved promise in the stream. Accepts both synchronous and asynchronous functions. Returns a new stream filled with promises that resolve to the value of `through`, so you can chain them (and use previous values).
@@ -222,7 +222,7 @@ stream
   .pipe(renderToDocument);
 ```
 
-##### <code>PromiseStream.pipeOrdered(*function:* through) -> new PromiseStream</code>
+##### <code>PromiseStream.pipeOrdered(*function:* through) -> PromiseStream</code>
 Runs a function `through` for every resolved promise in the stream, waiting for each previous resolvement. Accepts both synchronous and asynchronous functions. Returns a new stream filled with promises that resolve to the value of `through`, so you can chain them (and use previous values).
 
 ##### <code>PromiseStream.all () -> Promise<Any[]></code>
