@@ -9,6 +9,8 @@ export default async function smartRequest (url = "", options = {
 	//implements exponential backoff https://developers.google.com/analytics/devguides/reporting/core/v3/errors#backoff
 	//CHECK FOR RETRY-AFTER HEADER IF STATUS === 429 || STATUSTEXT.MATCH("TOO MANY REQUESTS")
 	//Allow other formats than text
+	//Give users control over what to cache
+	//Expand getFetchSafeOptions
 	const cached = inCache(url);
 	if (cached !== false) return cached;
 

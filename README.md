@@ -20,30 +20,30 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
   <summary>Click to expand</summary>
 
 - [OBA-wrapper](#oba-wrapper)
-  - [Glossary](#glossary)
-  - [User feedback](#user-feedback)
-  - [Getting started](#getting-started)
-  - [Iteration plan / planned features](#iteration-plan--planned-features)
-  - [Tips for understanding the docs](#tips-for-understanding-the-docs)
-  - [Technologies](#technologies)
-    - [Simple Promise (Native promises)](#simple-promise-native-promises)
-      - [How to use](#how-to-use)
-    - [Promise streaming (Concurrency)](#promise-streaming-concurrency)
-      - [How to use](#how-to-use-1)
-        - [<code>PromiseStream.prepend (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamprepend-any-values---promisestreamcode)
-        - [<code>PromiseStream.append (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamappend-any-values---promisestreamcode)
-        - [<code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>](#codepromisestreaminsert-number-index-any-values---promisestreamcode)
-        - [<code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>](#codepromisestreampipe-function-through---promisestreamcode)
-        - [<code>PromiseStream.pipeOrdered(*function:* through) -> PromiseStream</code>](#codepromisestreampipeorderedfunction-through---promisestreamcode)
-        - [<code>PromiseStream.all () -> Promise<Any[]></code>](#codepromisestreamall----promiseanycode)
-        - [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
-    - [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
-      - [How to use](#how-to-use-2)
-        - [<code>for await ... of ...</code>](#codefor-await--of-code)
-    - ["Smart" Requests](#%22smart%22-requests)
-      - [How to use](#how-to-use-3)
-        - [<code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>](#codesmartrequesturl-url-object-options---promiseresponsecode)
-  - [License](#license)
+	- [Glossary](#glossary)
+	- [User feedback](#user-feedback)
+	- [Getting started](#getting-started)
+	- [Iteration plan / planned features](#iteration-plan--planned-features)
+	- [Tips for understanding the docs](#tips-for-understanding-the-docs)
+	- [Technologies](#technologies)
+		- [Simple Promise (Native promises)](#simple-promise-native-promises)
+			- [How to use](#how-to-use)
+		- [Promise streaming (Concurrency)](#promise-streaming-concurrency)
+			- [How to use](#how-to-use-1)
+				- [<code>PromiseStream.prepend (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamprepend-any-values---promisestreamcode)
+				- [<code>PromiseStream.append (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamappend-any-values---promisestreamcode)
+				- [<code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>](#codepromisestreaminsert-number-index-any-values---promisestreamcode)
+				- [<code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>](#codepromisestreampipe-function-through---promisestreamcode)
+				- [<code>PromiseStream.pipeOrdered(*function:* through) -> PromiseStream</code>](#codepromisestreampipeorderedfunction-through---promisestreamcode)
+				- [<code>PromiseStream.all () -> Promise<Any[]></code>](#codepromisestreamall----promiseanycode)
+				- [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
+		- [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
+			- [How to use](#how-to-use-2)
+				- [<code>for await ... of ...</code>](#codefor-await--of-code)
+		- ["Smart" Requests](#%22smart%22-requests)
+			- [How to use](#how-to-use-3)
+				- [<code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>](#codesmartrequesturl-url-object-options---promiseresponsecode)
+	- [License](#license)
 </details>
 
 <br/>
@@ -145,6 +145,9 @@ You can also [just have some fun inside the sandbox](./test.html)!
 - [ ] ⚫️ Builtin filter
 - [ ] 🏃 Allow offset requests (either set start page or define offset as items/pagesize)
 - [ ] ⚫️ "Revivable" smart requests.
+- [ ] ⚫️ Allow other formats than text in smartRequest
+- [ ] 🏃 Give users control over what to cache in smartRequest
+- [ ] ⚫️ Expand getFetchSafeOptions in smartRequest
 
 <br/>
 <br/>
