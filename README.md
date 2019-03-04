@@ -7,6 +7,8 @@ Sadly, the API is a bit clunky, so I set out to make it easy to work with!
 
 _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 
+> Don't forget to ⭐ the repo if you like it :)
+
 <br/>
 
 ---
