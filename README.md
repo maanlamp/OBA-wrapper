@@ -103,6 +103,25 @@ Since the wrapper is only client side (currently), you can just download the the
 
 - Also note that if you use a package manager, the url will probably be different. For example: for npm the url would be `node_modules/OBA-wrapper/js/index.js`.
 
+The quickest way to start a working request is as follows:
+```js
+(async () => {
+  localStorage.clear();
+
+  const api = new API({
+      key: "ADD YOUR KEY HERE"
+  });
+  const stream = await api.createStream("search/banaan{5}");
+
+  stream
+    .pipe(stringify)
+    .pipe(console.log)
+    .catch(console.error);
+})();
+```
+
+You can also [just have some fun inside the sandbox](./test.html)!
+
 <br/>
 <br/>
 
