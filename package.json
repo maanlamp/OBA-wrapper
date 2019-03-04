@@ -1,0 +1,19 @@
+{
+  "name": "oba-wrapper",
+  "version": "1.0.0",
+  "description": "A wrapper to untuitively use the OBA-api",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maanlamp/OBA-wrapper.git"
+  },
+  "author": "Maanlamp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maanlamp/OBA-wrapper/issues"
+  },
+  "homepage": "https://github.com/maanlamp/OBA-wrapper#readme"
+}

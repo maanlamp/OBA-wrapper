@@ -275,7 +275,7 @@ Besides that, it will use `localStorage` to cache responses by url, so later sma
 You should not have to use a SmartRequest directly, since this wrapper uses them under the hood. You could use them _standalone_ for other purposes though. You can make use of the following methods:
 
 ##### <code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>
-Sends out a fetch request that retries `options.maxTries` (defaults to `5`) times if possible. If a fatal error occored, or the maximum amount of tries was exceeded, the promise rejects with an error. If all went well, it will cache the result from url in localStorage with the key of `url`, and resolve with a response.
+Sends out a fetch request that retries `options.maxTries` (defaults to `5`) times if possible. If a fatal error occured, or the maximum amount of tries was exceeded, the promise rejects with an error. If all went well, it will cache the result from url in localStorage with the key of `url`, and resolve with a response.
 
 <br/>
 <br/>
