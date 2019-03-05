@@ -87,7 +87,7 @@ export class API {
 			? url + pingExtras + `&rctx=${context}`
 			: url + pingExtras;
 
-		return smart(builtURL) //test if it's beneficial to use smartrequest here
+		return fetch(builtURL) //test if it's beneficial to use smartrequest here
 			.then(detectPingError)
 			.then(res => res.text())
 			.then(XMLToJSON)
