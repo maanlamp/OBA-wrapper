@@ -45,7 +45,7 @@ export class API {
 			switch (endpoint) {
 				case "search": return "q";
 				case "details": //fallthrough
-				case "availability": return "frabl";
+				case "availability": return "id";
 				default: throw new Error(`Unknown/unsupported endpoint '${endpoint}'`);
 			}
 		})();
@@ -70,7 +70,7 @@ export class API {
 			pagesize
 		} = Object.assign({}, this._parsePartial(partial), options);
 		const url = this._URL.replace("ENDPOINT", endpoint) + query;
-		const {count, context} = await this._ping(url, this._context, endpoint);
+		const {count, context} = await this._ping(url, this._context);
 		const batches = Math.ceil(Math.min(max, count) / pagesize);
 		const builtURL = url + `&pagesize=${pagesize}&refine=true`;
 
@@ -79,10 +79,7 @@ export class API {
 		return {batches, builtURL, count};
 	}
 
-	_ping (url, context, endpoint) {
-		const pingExtras = (endpoint === "search")
-			? "&pagesize=1&refine=false"
-			: ""; //idk about supplying an empty string. what about a proper function?
+	_ping (url, context) {
 		const builtURL = (context !== null)
 			? url + pingExtras + `&rctx=${context}`
 			: url + pingExtras;
