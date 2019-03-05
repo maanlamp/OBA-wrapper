@@ -81,8 +81,8 @@ export class API {
 
 	_ping (url, context) {
 		const builtURL = (context !== null)
-			? url + pingExtras + `&rctx=${context}`
-			: url + pingExtras;
+			? url + `&pagesize=1&refine=false&rctx=${context}`
+			: url + `&pagesize=1&refine=false`;
 
 		return fetch(builtURL) //test if it's beneficial to use smartrequest here
 			.then(detectPingError)
