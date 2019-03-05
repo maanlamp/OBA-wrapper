@@ -133,7 +133,7 @@ export class API {
 			}
 		}
 
-		return iterator.bind(this);
+		return iterator.call(this);
 	}
 
 	async createPromise (partial, options = {}) {
