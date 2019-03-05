@@ -45,7 +45,7 @@ export class API {
 			switch (endpoint) {
 				case "search": return "q";
 				case "details": //fallthrough
-				case "availability": return "id";
+				case "availability": return "frabl";
 				default: throw new Error(`Unknown/unsupported endpoint '${endpoint}'`);
 			}
 		})();
@@ -70,7 +70,7 @@ export class API {
 			pagesize
 		} = Object.assign({}, this._parsePartial(partial), options);
 		const url = this._URL.replace("ENDPOINT", endpoint) + query;
-		const {count, context} = await this._ping(url, this._context);
+		const {count, context} = await this._ping(url, this._context, endpoint);
 		const batches = Math.ceil(Math.min(max, count) / pagesize);
 		const builtURL = url + `&pagesize=${pagesize}&refine=true`;
 
@@ -79,12 +79,15 @@ export class API {
 		return {batches, builtURL, count};
 	}
 
-	_ping (url, context) {
+	_ping (url, context, endpoint) {
+		const pingExtras = (endpoint === "search")
+			? "&pagesize=1&refine=false"
+			: ""; //idk about supplying an empty string. what about a proper function?
 		const builtURL = (context !== null)
-			? url + `&pagesize=1&refine=false&rctx=${context}`
-			: url + `&pagesize=1&refine=false`;
+			? url + pingExtras + `&rctx=${context}`
+			: url + pingExtras;
 
-		return fetch(builtURL)
+		return smart(builtURL) //test if it's beneficial to use smartrequest here
 			.then(detectPingError)
 			.then(res => res.text())
 			.then(XMLToJSON)

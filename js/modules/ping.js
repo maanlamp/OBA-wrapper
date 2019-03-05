@@ -12,7 +12,7 @@ export function detectPingError (res) {
 
 export function buildPong (json) {
 	return new Pong(
-		Number(json.aquabrowser.meta.count._text),
+		Number(json.aquabrowser.meta.count._text), //check if response even supplies count
 		String(json.aquabrowser.meta.rctx._text));
 }
 
