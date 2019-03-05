@@ -152,6 +152,20 @@ export class API {
 				.then(cleanAquabrowserJSON)
 				.catch(API.logError));
 	}
+
+	availability (frabl) { //I hate this "solution", please fix dis kty <3
+		const url = this._URL.replace("ENDPOINT", "availability");
+		return smartRequest(url + `&frabl=${frabl}`)
+			.then(XMLToJSON)
+			.catch(API.logError);
+	}
+
+	details (frabl) { //I hate this "solution", please fix dis kty <3
+		const url = this._URL.replace("ENDPOINT", "details");
+		return smartRequest(url + `&frabl=${frabl}`)
+			.then(XMLToJSON)
+			.catch(API.logError);
+	}
 }
 
 window.API = API;
