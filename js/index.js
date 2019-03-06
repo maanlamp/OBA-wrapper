@@ -25,6 +25,8 @@ export class API {
 				error.message,
 				"color: black;",
 				error.stack.replace(/^.+\n/, ""));
+		
+		throw error;
 	}
 
 	_parsePartial (partial) {
