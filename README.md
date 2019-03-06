@@ -108,7 +108,6 @@ The quickest way to start a working request is as follows:
   const stream = await api.createStream("search/banaan{5}");
 
   stream
-    .pipe(stringify)
     .pipe(console.log)
     .catch(console.error);
 })();
