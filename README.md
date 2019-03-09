@@ -1,4 +1,4 @@
-![The OBA-wrapper logo](logo.png)
+![The OBA-wrapper logo](./assets/images/logo.png)
 
 # OBA-wrapper
 The OBA ([Openbare Bibliotheek Amsterdam](https://oba.nl)) has a public API that is usable by *everyone* to create very cool stuff; [here is a list of such cool stuff](https://www.oba.nl/actueel/obahva/techtrack.html).
@@ -20,30 +20,30 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
   <summary>Click to expand</summary>
 
 - [OBA-wrapper](#oba-wrapper)
-  - [Glossary](#glossary)
-  - [User feedback](#user-feedback)
-  - [Getting started](#getting-started)
-  - [Iteration plan / planned features](#iteration-plan--planned-features)
-  - [Tips for understanding the docs](#tips-for-understanding-the-docs)
-  - [Technologies](#technologies)
-    - [Simple Promise (Native promises)](#simple-promise-native-promises)
-      - [How to use](#how-to-use)
-    - [Promise streaming (Concurrency)](#promise-streaming-concurrency)
-      - [How to use](#how-to-use-1)
-        - [<code>PromiseStream.prepend (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamprepend-any-values---promisestreamcode)
-        - [<code>PromiseStream.append (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamappend-any-values---promisestreamcode)
-        - [<code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>](#codepromisestreaminsert-number-index-any-values---promisestreamcode)
-        - [<code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>](#codepromisestreampipe-function-through---promisestreamcode)
-        - [<code>PromiseStream.pipeOrdered(*function:* through) -> PromiseStream</code>](#codepromisestreampipeorderedfunction-through---promisestreamcode)
-        - [<code>PromiseStream.all () -> Promise<Any[]></code>](#codepromisestreamall----promiseanycode)
-        - [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
-    - [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
-      - [How to use](#how-to-use-2)
-        - [<code>for await ... of ...</code>](#codefor-await--of-code)
-    - ["Smart" Requests](#%22smart%22-requests)
-      - [How to use](#how-to-use-3)
-        - [<code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>](#codesmartrequesturl-url-object-options---promiseresponsecode)
-  - [License](#license)
+	- [Glossary](#glossary)
+	- [User feedback](#user-feedback)
+	- [Getting started](#getting-started)
+	- [Iteration plan / planned features](#iteration-plan--planned-features)
+	- [Tips for understanding the docs](#tips-for-understanding-the-docs)
+	- [Technologies](#technologies)
+		- [Simple Promise (Native promises)](#simple-promise-native-promises)
+			- [How to use](#how-to-use)
+		- [Promise streaming (Concurrency)](#promise-streaming-concurrency)
+			- [How to use](#how-to-use-1)
+				- [<code>PromiseStream.prepend (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamprepend-any-values---promisestreamcode)
+				- [<code>PromiseStream.append (*any[]:* ...values) -> PromiseStream</code>](#codepromisestreamappend-any-values---promisestreamcode)
+				- [<code>PromiseStream.insert (*number*: index?, *any[]:* ...values) -> PromiseStream</code>](#codepromisestreaminsert-number-index-any-values---promisestreamcode)
+				- [<code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>](#codepromisestreampipe-function-through---promisestreamcode)
+				- [<code>PromiseStream.pipeOrdered(*function:* through) -> PromiseStream</code>](#codepromisestreampipeorderedfunction-through---promisestreamcode)
+				- [<code>PromiseStream.all () -> Promise<Any[]></code>](#codepromisestreamall----promiseanycode)
+				- [<code>PromiseStream.catch (*function:* handler) -> PromiseStream</code>](#codepromisestreamcatch-function-handler---promisestreamcode)
+		- [Asynchronous iterator (Consecutiveness)](#asynchronous-iterator-consecutiveness)
+			- [How to use](#how-to-use-2)
+				- [<code>for await ... of ...</code>](#codefor-await--of-code)
+		- ["Smart" Requests](#%22smart%22-requests)
+			- [How to use](#how-to-use-3)
+				- [<code>smartRequest(_url_: url, _object_: options?) -> Promise\<response\></code>](#codesmartrequesturl-url-object-options---promiseresponsecode)
+	- [License](#license)
 </details>
 
 <br/>
@@ -113,7 +113,7 @@ The quickest way to start a working request is as follows:
 })();
 ```
 
-You can also [just have some fun inside the sandbox](./test.html)!
+You can also [just have some fun inside the sandbox](https://oba-wrapper-playground.netlify.com/)!
 
 <br/>
 <br/>
