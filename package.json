@@ -10,10 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/maanlamp/OBA-wrapper.git"
   },
-  "author": "Maanlamp",
+  "author": "maanlamp",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maanlamp/OBA-wrapper/issues"
   },
-  "homepage": "https://github.com/maanlamp/OBA-wrapper#readme"
+  "homepage": "https://github.com/maanlamp/OBA-wrapper#readme",
+  "dependencies": {
+    "promisestream": "github:maanlamp/promisestream",
+    "smartfetch": "github:maanlamp/smartfetch"
+  },
+  "devDependencies": {}
 }
