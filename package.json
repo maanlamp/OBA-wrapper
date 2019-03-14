@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/maanlamp/OBA-wrapper#readme",
   "dependencies": {
+    "dom-parser": "^0.1.5",
     "node-fetch": "^2.3.0",
     "promisestream": "github:maanlamp/promisestream",
     "smartfetch": "github:maanlamp/smartfetch"

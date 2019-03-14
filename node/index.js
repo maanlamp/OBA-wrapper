@@ -1,6 +1,7 @@
 const PromiseStream = require("promisestream");
 const smartfetch = require("smartfetch");
 const fetch = require("node-fetch");
+const DOMParser = require("dom-parser");
 
 const smartfetchOptions = {
 	store: {
@@ -171,7 +172,7 @@ module.exports = class API {
 			? url + `&pagesize=1&refine=false&rctx=${context}`
 			: url + `&pagesize=1&refine=false`;
 
-		return fetch(builtURL) //test if it's beneficial to use smartrequest here
+		return fetch(builtURL, {headers:{"Origin": null}}) //test if it's beneficial to use smartrequest here
 			.then(detectPingError)
 			.then(res => res.text())
 			.then(XMLToJSON)
