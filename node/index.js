@@ -63,7 +63,7 @@ function XMLToJSON (xml) {
 			json = xmldoc.nodeValue;
 		}
 
-		if (xmldoc.hasChildNodes()) {
+		if (!!xmldoc.firstChild) {
 			for (const child of xmldoc.childNodes) {
 				const nodeName = child.nodeName.replace(/^#/, "_");
 
