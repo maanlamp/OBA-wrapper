@@ -1,5 +1,6 @@
 const PromiseStream = require("promisestream");
 const smartfetch = require("smartfetch");
+const fetch = require("node-fetch");
 
 const smartfetchOptions = {
 	store: {
