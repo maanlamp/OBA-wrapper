@@ -3,11 +3,11 @@ const smartfetch = require("smartfetch").default;
 const fetch = require("node-fetch");
 const XMLParser = require("xml-to-json-promise").xmlDataToJSON;
 
+const cache = new Map();
 const smartfetchOptions = {
 	store: {
-		values: new Map(),
-		get: (key) => this.values.get(key),
-		set: (key, value) => this.values.set(key, value)
+		get: (key) => cache.get(key),
+		set: (key, value) => cache.set(key, value)
 	}
 };
 
