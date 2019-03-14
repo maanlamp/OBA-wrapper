@@ -31,8 +31,8 @@ function detectPingError (res) {
 
 function buildPong (json) {
 	return new Pong(
-		Number(json.aquabrowser.meta.count._text),
-		String(json.aquabrowser.meta.rctx._text));
+		Number(json.aquabrowser.meta[0].count[0]),
+		String(json.aquabrowser.meta[0].rctx[0]));
 }
 
 function supressPingError (err) {
@@ -46,7 +46,7 @@ function XMLToJSON (xml) {
 
 function handleJSONParserError (json) {
 	const err = json.aquabrowser.error;
-	if (err) throw new Error(`${err.code._text} ${err.reason._text}`);
+	if (err) throw new Error(`${err.code[0]} ${err.reason[0]}`);
 	return json;
 }
 
