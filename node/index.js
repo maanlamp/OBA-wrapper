@@ -1,7 +1,7 @@
 const PromiseStream = require("promisestream");
 const smartfetch = require("smartfetch");
 const fetch = require("node-fetch");
-const DOMParser = require("dom-parser");
+const DOMParser = require("xmldom").DOMParser;
 
 const smartfetchOptions = {
 	store: {
@@ -63,7 +63,7 @@ function XMLToJSON (xml) {
 			json = xmldoc.nodeValue;
 		}
 
-		if (!!xmldoc.firstChild) {
+		if (xmldoc.hasChildNodes()) {
 			for (const child of xmldoc.childNodes) {
 				const nodeName = child.nodeName.replace(/^#/, "_");
 
