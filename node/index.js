@@ -1,5 +1,5 @@
-const PromiseStream = require("promisestream");
-const smartfetch = require("smartfetch");
+const PromiseStream = require("promisestream").default;
+const smartfetch = require("smartfetch").default;
 const fetch = require("node-fetch");
 const XMLParser = require("xml-to-json-promise").xmlDataToJSON;
 
