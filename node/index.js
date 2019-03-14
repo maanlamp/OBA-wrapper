@@ -8,7 +8,8 @@ const smartfetchOptions = {
 	store: {
 		get: (key) => cache.get(key),
 		set: (key, value) => cache.set(key, value)
-	}
+	},
+	fetch
 };
 
 function range (size = 0, end = size) {
