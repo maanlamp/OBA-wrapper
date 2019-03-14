@@ -1,7 +1,7 @@
 const PromiseStream = require("promisestream");
 const smartfetch = require("smartfetch");
 const fetch = require("node-fetch");
-const DOMParser = require("xmldom").DOMParser;
+const XMLParser = require("xml-to-json-promise").xmlDataToJSON;
 
 const smartfetchOptions = {
 	store: {
@@ -41,47 +41,7 @@ function supressPingError (err) {
 }
 
 function XMLToJSON (xml) {
-	const parser = new DOMParser();
-	const doc = parser.parseFromString(xml, "application/xml");
-
-	function parse (xmldoc) {
-		const nodeTypes = {
-			"element": 1,
-			"text": 3
-		};
-		let json = {};
-
-		if (xmldoc.nodeType === nodeTypes["element"]) {
-			if (xmldoc.attributes.length > 0) {
-				json["_attributes"] = {};
-			}
-
-			for (const attr of xmldoc.attributes) {
-				json["_attributes"][attr.nodeName] = attr.nodeValue;
-			}
-		} else if (xmldoc.nodeType === nodeTypes["text"]) {
-			json = xmldoc.nodeValue;
-		}
-
-		if (xmldoc.hasChildNodes()) {
-			for (const child of xmldoc.childNodes) {
-				const nodeName = child.nodeName.replace(/^#/, "_");
-
-				if (json[nodeName] === undefined) {
-					json[nodeName] = parse(child);
-				} else {
-					if (json[nodeName].push === undefined) {
-						json[nodeName] = Array(json[nodeName]);
-					}
-					json[nodeName].push(parse(child));
-				}
-			}
-		}
-
-		return json;
-	}
-
-	return parse(doc);
+	return XMLParser(xml);
 }
 
 function handleJSONParserError (json) {
