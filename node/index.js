@@ -5,11 +5,11 @@ const XMLParser = require("xml-to-json-promise").xmlDataToJSON;
 
 const cache = new Map();
 const smartfetchOptions = {
+	fetch,
 	store: {
 		get: (key) => cache.get(key),
 		set: (key, value) => cache.set(key, value)
-	},
-	fetch
+	}
 };
 
 function range (size = 0, end = size) {
