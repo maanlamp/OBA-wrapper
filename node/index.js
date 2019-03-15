@@ -9,7 +9,10 @@ const smartfetchOptions = {
 	store: {
 		get: (key) => cache.get(key),
 		set: (key, value) => cache.set(key, value)
-	}
+	},
+	format: "text",
+	maxTries: 5,
+	maxTimeout: 30
 };
 
 function range (size = 0, end = size) {
