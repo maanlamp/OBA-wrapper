@@ -54,6 +54,10 @@ function handleJSONParserError (json) {
 	return json;
 }
 
+function cleanAquabrowserJSON (json) {
+	return json.aquabrowser.results.result;
+}
+
 module.exports = class API {
 	constructor ({
 		CORSProxy = "https://cors-anywhere.herokuapp.com/",
@@ -159,6 +163,7 @@ module.exports = class API {
 					.map(index => builtURL + `&page=${index + 1}&rctx=${this._context}`)
 					.map(url => smartfetch(url, smartfetchOptions)))
 			.pipe(XMLToJSON)
+			.pipe(cleanAquabrowserJSON)
 			.catch(API.logError);
 	}
 
@@ -179,6 +184,7 @@ module.exports = class API {
 				const url = requests.shift();
 				yield await smartfetch(url, smartfetchOptions)
 					.then(XMLToJSON)
+					.then(cleanAquabrowserJSON)
 					.catch(API.logError);
 			}
 		}
@@ -199,6 +205,7 @@ module.exports = class API {
 			.map(index => builtURL + `&page=${index + 1}&rctx=${this._context}`)
 			.map(url => smartfetch(url, smartfetchOptions)
 				.then(XMLToJSON)
+				.then(cleanAquabrowserJSON)
 				.catch(API.logError));
 	}
 
