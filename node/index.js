@@ -55,7 +55,6 @@ function handleJSONParserError (json) {
 }
 
 function cleanAquabrowserJSON (json) {
-	console.log(Object.keys(json.aquabrowser.results[0].result));
 	return json.aquabrowser.results[0].result;
 }
 
