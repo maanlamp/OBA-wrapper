@@ -55,7 +55,7 @@ function handleJSONParserError (json) {
 }
 
 function cleanAquabrowserJSON (json) {
-	return json.aquabrowser.results[0].result[0];
+	return json.aquabrowser.results[0].result;
 }
 
 module.exports = class API {
