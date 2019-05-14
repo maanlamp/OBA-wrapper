@@ -9,7 +9,10 @@ const smartfetchOptions = {
 	store: {
 		get: (key) => cache.get(key),
 		set: (key, value) => cache.set(key, value)
-	}
+	},
+	format: "text",
+	maxTries: 5,
+	maxTimeout: 30
 };
 
 function range (size = 0, end = size) {
@@ -49,6 +52,10 @@ function handleJSONParserError (json) {
 	const err = json.aquabrowser.error;
 	if (err) throw new Error(`${err.code[0]} ${err.reason[0]}`);
 	return json;
+}
+
+function cleanAquabrowserJSON (json) {
+	return json.aquabrowser.results[0].result;
 }
 
 module.exports = class API {
@@ -156,6 +163,7 @@ module.exports = class API {
 					.map(index => builtURL + `&page=${index + 1}&rctx=${this._context}`)
 					.map(url => smartfetch(url, smartfetchOptions)))
 			.pipe(XMLToJSON)
+			.pipe(cleanAquabrowserJSON)
 			.catch(API.logError);
 	}
 
@@ -176,6 +184,7 @@ module.exports = class API {
 				const url = requests.shift();
 				yield await smartfetch(url, smartfetchOptions)
 					.then(XMLToJSON)
+					.then(cleanAquabrowserJSON)
 					.catch(API.logError);
 			}
 		}
@@ -196,6 +205,7 @@ module.exports = class API {
 			.map(index => builtURL + `&page=${index + 1}&rctx=${this._context}`)
 			.map(url => smartfetch(url, smartfetchOptions)
 				.then(XMLToJSON)
+				.then(cleanAquabrowserJSON)
 				.catch(API.logError));
 	}
 
