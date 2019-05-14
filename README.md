@@ -23,6 +23,9 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 	- [Glossary](#glossary)
 	- [User feedback](#user-feedback)
 	- [Getting started](#getting-started)
+		- [ES6 Module](#es6-module)
+		- [Node](#node)
+		- [Sandbox](#sandbox)
 	- [Iteration plan / planned features](#iteration-plan--planned-features)
 	- [Tips for understanding the docs](#tips-for-understanding-the-docs)
 	- [Technologies](#technologies)
@@ -71,15 +74,16 @@ _Built and maintained by [@maanlamp](https://github.com/maanlamp)._
 <br/>
 
 ## Getting started
-the recommended way to use this wrapper is through some sort of package manager, such as *NPM*:
 
+Install the module with a package manager:
 ```shell
 npm i github:maanlamp/OBA-wrapper
 ```
 
-This way, you are sure to get the latest version, and you can easily update using the package manager aswell.
+Or just download the repo as a ZIP.
 
-Since the wrapper is only client side (currently), you can just download the the entire `js` folder, and import `index.js` into your html as follows:
+### ES6 Module
+To use the es6 modules version, link to it in your html using a script tag:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -91,11 +95,23 @@ Since the wrapper is only client side (currently), you can just download the the
 <!-- ... -->
 ```
 
+Or import it in another module:
+```js
+import { API } from "OBA-wrapper/js/index.js";
+```
+
 - Note that it is not needed to import it at the bottom of a `<body>` tag, since a module will always be loaded after the document.
 
 - `type="module"` is *VERY* important.
 
 - Also note that if you use a package manager, the url will probably be different. For example: for npm the url would be `node_modules/OBA-wrapper/js/index.js`.
+
+### Node
+```js
+const API = require("OBA-wrapper/node");
+```
+
+### Sandbox
 
 The quickest way to start a working request is as follows:
 ```js
@@ -131,15 +147,15 @@ You can also [just have some fun inside the sandbox](https://oba-wrapper-playgro
 | 💪 | Expected in next release |
 | ⚫️ | Under discussion |
 
-- [ ] 🏃 Make server-side usage possible.
-- [ ] ⚫️ Make a `[Symbol().asyncIterator]` for stream
-- [ ] ⚫️ Separate `api._ping()` into own module
+- [x] _Make server-side usage possible._
+- [x] _Separate `api._ping()` into own module_
+- [x] _Allow other formats than text in smartRequest_
 - [ ] 💪 If HTTP 429, respect `Retry-After` response header (instead of exponential backoff).
-- [ ] ⚫️ Builtin filter
-- [ ] 🏃 Allow offset requests (either set start page or define offset as items/pagesize)
-- [ ] ⚫️ "Revivable" smart requests.
-- [ ] ⚫️ Allow other formats than text in smartRequest
 - [ ] 🏃 Give users control over what to cache in smartRequest
+- [ ] 🏃 Allow offset requests (either set start page or define offset as items/pagesize)
+- [ ] ⚫️ Make a `[Symbol().asyncIterator]` for stream
+- [ ] ⚫️ Builtin filter
+- [ ] ⚫️ "Revivable" smart requests.
 - [ ] ⚫️ Expand getFetchSafeOptions in smartRequest
 
 <br/>
@@ -173,8 +189,6 @@ You can also [just have some fun inside the sandbox](https://oba-wrapper-playgro
 <br/>
 
 ## Technologies
-⚠️ This wrapper was built for the client side. Server-side querying will be supported in a later version.
-
 Interfacing with the API can be done in several ways. This is to facilitate the coding style of everyone while using the wrapper.
 
 <br/>
@@ -223,7 +237,7 @@ Inserts values at the end of the stream. `values` do not have to be promises, th
 Inserts values into the stream at `index`. `values` do not have to be promises, the stream will internally convert all values to promises. If `index` is not provided, it will be treated as `values`.
 
 ##### <code>PromiseStream.pipe (*function:* through) -> PromiseStream</code>
-⚠️ _Does not pipe in order!_
+⚠️ _Does not pipe in order! Use [PromiseStream.pipeOrdered](#codepromisestreampipeorderedfunction-through---promisestreamcode) instead._
 
 Runs a function `through` for every resolved promise in the stream. Accepts both synchronous and asynchronous functions. Returns a new stream filled with promises that resolve to the value of `through`, so you can chain them (and use previous values).
 
@@ -252,7 +266,7 @@ Adds a `.catch()` to every promise to allow for individual error handling. If yo
 <br/>
 
 ### Asynchronous iterator (Consecutiveness)
-An iterator is a protocol used in JavaScript to iterate over enumerable objects. If that makes no sense to you, I mean things like arrays. You can loop (e.g. _iterate_) over those.
+An iterator is a protocol used in JavaScript to iterate over enumerable objects. If that makes no sense to you, I mean things like arrays. You can loop (_iterate_) over those.
 
 However, arrays have synchronous iterators. That means they do not `await` the values inside, so you cannot use them for promises.
 
@@ -274,7 +288,7 @@ for await (const response of iterator) {
 	renderToDocument(cleanedJSON);
 }
 ```
-This will do the same as [this PromiseStream example](#codepipefunction-throughcode).
+This will do the same as [this PromiseStream example](#codepromisestreampipe-function-through---promisestreamcode).
 
 <br/>
 <br/>
